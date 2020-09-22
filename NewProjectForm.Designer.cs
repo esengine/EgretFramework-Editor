@@ -31,12 +31,87 @@ namespace CLEditor
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.darkSectionPanel1 = new DarkUI.Controls.DarkSectionPanel();
+            this.projectBrowser = new DarkUI.Controls.DarkButton();
+            this.projectPosition = new DarkUI.Controls.DarkTextBox();
+            this.darkLabel1 = new DarkUI.Controls.DarkLabel();
+            this.createBtn = new DarkUI.Controls.DarkButton();
+            this.darkSectionPanel1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // darkSectionPanel1
+            // 
+            this.darkSectionPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.darkSectionPanel1.Controls.Add(this.createBtn);
+            this.darkSectionPanel1.Controls.Add(this.projectBrowser);
+            this.darkSectionPanel1.Controls.Add(this.projectPosition);
+            this.darkSectionPanel1.Controls.Add(this.darkLabel1);
+            this.darkSectionPanel1.Location = new System.Drawing.Point(12, 12);
+            this.darkSectionPanel1.Name = "darkSectionPanel1";
+            this.darkSectionPanel1.SectionHeader = "工程属性";
+            this.darkSectionPanel1.Size = new System.Drawing.Size(446, 124);
+            this.darkSectionPanel1.TabIndex = 0;
+            // 
+            // projectBrowser
+            // 
+            this.projectBrowser.Location = new System.Drawing.Point(361, 40);
+            this.projectBrowser.Name = "projectBrowser";
+            this.projectBrowser.Padding = new System.Windows.Forms.Padding(5);
+            this.projectBrowser.Size = new System.Drawing.Size(75, 23);
+            this.projectBrowser.TabIndex = 2;
+            this.projectBrowser.Text = "浏览...";
+            // 
+            // projectPosition
+            // 
+            this.projectPosition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.projectPosition.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.projectPosition.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.projectPosition.Location = new System.Drawing.Point(73, 41);
+            this.projectPosition.Name = "projectPosition";
+            this.projectPosition.Size = new System.Drawing.Size(282, 21);
+            this.projectPosition.TabIndex = 1;
+            // 
+            // darkLabel1
+            // 
+            this.darkLabel1.AutoSize = true;
+            this.darkLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.darkLabel1.Location = new System.Drawing.Point(15, 45);
+            this.darkLabel1.Name = "darkLabel1";
+            this.darkLabel1.Size = new System.Drawing.Size(53, 12);
+            this.darkLabel1.TabIndex = 0;
+            this.darkLabel1.Text = "工程路径";
+            // 
+            // createBtn
+            // 
+            this.createBtn.Location = new System.Drawing.Point(17, 84);
+            this.createBtn.Name = "createBtn";
+            this.createBtn.Padding = new System.Windows.Forms.Padding(5);
+            this.createBtn.Size = new System.Drawing.Size(419, 23);
+            this.createBtn.TabIndex = 3;
+            this.createBtn.Text = "创建";
+            // 
+            // NewProjectForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(470, 148);
+            this.Controls.Add(this.darkSectionPanel1);
+            this.Name = "NewProjectForm";
             this.Text = "NewProjectForm";
+            this.darkSectionPanel1.ResumeLayout(false);
+            this.darkSectionPanel1.PerformLayout();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private DarkUI.Controls.DarkSectionPanel darkSectionPanel1;
+        private DarkUI.Controls.DarkButton projectBrowser;
+        private DarkUI.Controls.DarkTextBox projectPosition;
+        private DarkUI.Controls.DarkLabel darkLabel1;
+        private DarkUI.Controls.DarkButton createBtn;
     }
 }
