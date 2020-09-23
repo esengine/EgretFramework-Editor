@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using CLEditor.Properties;
-using DarkUI.Controls;
-using DarkUI.Docking;
+using CLEditor.Utils;
 using DarkUI.Forms;
 
 namespace CLEditor
@@ -23,13 +22,32 @@ namespace CLEditor
 
         private void CreateBtnOnClick(object sender, EventArgs e)
         {
-            
+            if (string.IsNullOrEmpty(projectName.Text))
+            {
+                MessageBox.Show(Resources.NewProjectForm_ProjectNameIsNotNull);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(projectPosition.Text))
+            {
+                MessageBox.Show(Resources.NewProjectForm_ProjectPathIsNotNull);
+                return;
+            }
+
+            if (!Directory.Exists(projectPosition.Text))
+            {
+                Directory.CreateDirectory(projectBrowser.Text);
+            }
+
+            ProcessUtils.Run($"egret create {projectName.Text} --type core", projectPosition.Text);
+            Log.Info("项目创建完毕");
+            Close();
         }
 
         private void ProjectBrowserOnClick(object sender, EventArgs e)
         {
             var projectDialog = new FolderBrowserDialog();
-            if (projectDialog.ShowDialog() == DialogResult.Yes)
+            if (projectDialog.ShowDialog() == DialogResult.OK)
             {
                 projectPosition.Text = projectDialog.SelectedPath;
             }

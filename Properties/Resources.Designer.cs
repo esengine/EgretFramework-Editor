@@ -104,5 +104,23 @@ namespace CLEditor.Properties {
                 return ResourceManager.GetString("NewProjectForm_ProjectName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 工程名不能为空.
+        /// </summary>
+        internal static string NewProjectForm_ProjectNameIsNotNull {
+            get {
+                return ResourceManager.GetString("NewProjectForm_ProjectNameIsNotNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 工程路径不能为空.
+        /// </summary>
+        internal static string NewProjectForm_ProjectPathIsNotNull {
+            get {
+                return ResourceManager.GetString("NewProjectForm_ProjectPathIsNotNull", resourceCulture);
+            }
+        }
     }
 }

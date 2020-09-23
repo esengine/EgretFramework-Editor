@@ -129,4 +129,10 @@
   <data name="NewProjectForm_ProjectName" xml:space="preserve">
     <value>工程名称</value>
   </data>
+  <data name="NewProjectForm_ProjectNameIsNotNull" xml:space="preserve">
+    <value>工程名不能为空</value>
+  </data>
+  <data name="NewProjectForm_ProjectPathIsNotNull" xml:space="preserve">
+    <value>工程路径不能为空</value>
+  </data>
 </root>

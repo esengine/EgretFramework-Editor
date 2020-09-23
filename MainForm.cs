@@ -56,7 +56,7 @@ namespace CLEditor
 
             Text = Resources.MainForm_Title + string.Format(Resources.MainForm_Version, Application.ProductVersion);
 			WindowState = FormWindowState.Maximized;
-		}
+        }
 
         private void HookEvents()
         {
