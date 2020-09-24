@@ -5,5 +5,8 @@
     <Setting Name="DOCKPANELCONFIG" Type="System.String" Scope="User">
       <Value Profile="(Default)">dockpanel.config</Value>
     </Setting>
+    <Setting Name="PROJECTCONFIG" Type="System.String" Scope="User">
+      <Value Profile="(Default)">project.config</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

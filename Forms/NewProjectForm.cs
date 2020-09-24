@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using CLEditor.Editor;
 using CLEditor.Properties;
 using CLEditor.Utils;
 using DarkUI.Forms;
@@ -9,6 +10,8 @@ namespace CLEditor
 {
     public partial class NewProjectForm : DarkForm
     {
+	    public ProjectInfo Info;
+
         public NewProjectForm()
         {
             InitializeComponent();
@@ -39,10 +42,33 @@ namespace CLEditor
                 Directory.CreateDirectory(projectBrowser.Text);
             }
 
-            ProcessUtils.Run($"egret create {projectName.Text} --type core", projectPosition.Text);
-            Log.Info("项目创建完毕");
-            Close();
-        }
+            Info = new ProjectInfo
+            {
+	            Name = projectName.Text, Path = Path.Combine(projectPosition.Text, projectName.Text)
+            };
+
+            try
+            {
+	            ProcessHelper.Run($"egret create {projectName.Text} --type core", projectPosition.Text, text =>
+	            {
+		            SerializerHelper.Serialize(Info, Path.Combine(projectPosition.Text, projectName.Text, Settings.Default.PROJECTCONFIG));
+	            });
+			}
+            catch (Exception exception)
+            {
+				Log.Error("项目创建失败:" + exception.Message);
+				return;
+            }
+           
+
+            NewProjectComplete();
+		}
+
+        private void NewProjectComplete()
+        {
+	        DialogResult = DialogResult.Yes;
+	        Log.Info("项目创建完毕");
+		}
 
         private void ProjectBrowserOnClick(object sender, EventArgs e)
         {

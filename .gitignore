@@ -3,3 +3,5 @@
 /.vs
 /.idea
 /packages
+/libs/NodeEditor/bin
+/libs/NodeEditor/obj

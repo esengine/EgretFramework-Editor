@@ -37,24 +37,28 @@
 			this.logBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.logBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.logBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-			this.logBox.Location = new System.Drawing.Point(0, 25);
+			this.logBox.Location = new System.Drawing.Point(0, 31);
+			this.logBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.logBox.Multiline = true;
 			this.logBox.Name = "logBox";
 			this.logBox.ReadOnly = true;
 			this.logBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.logBox.Size = new System.Drawing.Size(389, 239);
+			this.logBox.Size = new System.Drawing.Size(454, 299);
 			this.logBox.TabIndex = 0;
 			// 
 			// LoggerView
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.logBox);
 			this.DefaultDockArea = DarkUI.Docking.DarkDockArea.Bottom;
 			this.DockText = "日志";
+			this.Font = new System.Drawing.Font("Segoe UI", 9F);
+			this.Icon = global::CLEditor.Properties.Resources.application_16x;
+			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "LoggerView";
 			this.SerializationKey = "LoggerView";
-			this.Size = new System.Drawing.Size(389, 264);
+			this.Size = new System.Drawing.Size(454, 330);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

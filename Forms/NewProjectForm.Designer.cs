@@ -32,12 +32,12 @@ namespace CLEditor
         private void InitializeComponent()
         {
 			this.darkSectionPanel1 = new DarkUI.Controls.DarkSectionPanel();
+			this.projectName = new DarkUI.Controls.DarkTextBox();
+			this.darkLabel2 = new DarkUI.Controls.DarkLabel();
 			this.createBtn = new DarkUI.Controls.DarkButton();
 			this.projectBrowser = new DarkUI.Controls.DarkButton();
 			this.projectPosition = new DarkUI.Controls.DarkTextBox();
 			this.darkLabel1 = new DarkUI.Controls.DarkLabel();
-			this.projectName = new DarkUI.Controls.DarkTextBox();
-			this.darkLabel2 = new DarkUI.Controls.DarkLabel();
 			this.darkSectionPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -58,9 +58,29 @@ namespace CLEditor
 			this.darkSectionPanel1.Size = new System.Drawing.Size(446, 179);
 			this.darkSectionPanel1.TabIndex = 0;
 			// 
+			// projectName
+			// 
+			this.projectName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+			this.projectName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.projectName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+			this.projectName.Location = new System.Drawing.Point(74, 44);
+			this.projectName.Name = "projectName";
+			this.projectName.Size = new System.Drawing.Size(362, 21);
+			this.projectName.TabIndex = 5;
+			// 
+			// darkLabel2
+			// 
+			this.darkLabel2.AutoSize = true;
+			this.darkLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+			this.darkLabel2.Location = new System.Drawing.Point(16, 48);
+			this.darkLabel2.Name = "darkLabel2";
+			this.darkLabel2.Size = new System.Drawing.Size(41, 12);
+			this.darkLabel2.TabIndex = 4;
+			this.darkLabel2.Text = "工程名";
+			// 
 			// createBtn
 			// 
-			this.createBtn.Location = new System.Drawing.Point(17, 152);
+			this.createBtn.Location = new System.Drawing.Point(17, 129);
 			this.createBtn.Name = "createBtn";
 			this.createBtn.Padding = new System.Windows.Forms.Padding(5);
 			this.createBtn.Size = new System.Drawing.Size(419, 23);
@@ -96,26 +116,6 @@ namespace CLEditor
 			this.darkLabel1.TabIndex = 0;
 			this.darkLabel1.Text = "工程路径";
 			// 
-			// projectName
-			// 
-			this.projectName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
-			this.projectName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.projectName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-			this.projectName.Location = new System.Drawing.Point(74, 44);
-			this.projectName.Name = "projectName";
-			this.projectName.Size = new System.Drawing.Size(362, 21);
-			this.projectName.TabIndex = 5;
-			// 
-			// darkLabel2
-			// 
-			this.darkLabel2.AutoSize = true;
-			this.darkLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-			this.darkLabel2.Location = new System.Drawing.Point(16, 48);
-			this.darkLabel2.Name = "darkLabel2";
-			this.darkLabel2.Size = new System.Drawing.Size(41, 12);
-			this.darkLabel2.TabIndex = 4;
-			this.darkLabel2.Text = "工程名";
-			// 
 			// NewProjectForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -123,6 +123,7 @@ namespace CLEditor
 			this.ClientSize = new System.Drawing.Size(470, 203);
 			this.Controls.Add(this.darkSectionPanel1);
 			this.Name = "NewProjectForm";
+			this.ShowIcon = false;
 			this.Text = "NewProjectForm";
 			this.darkSectionPanel1.ResumeLayout(false);
 			this.darkSectionPanel1.PerformLayout();

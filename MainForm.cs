@@ -2,8 +2,10 @@
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using CLEditor.Editor;
 using CLEditor.Properties;
 using CLEditor.Utils;
+using CLEditor.Views;
 using DarkUI.Docking;
 using DarkUI.Forms;
 using DarkUI.Win32;
@@ -17,10 +19,15 @@ namespace CLEditor
 	public partial class MainForm : DarkForm
     {
         private SourceList<DarkDockContent> _toolWindows = new SourceList<DarkDockContent>();
-        private LoggerView _loggerView;
+        internal LoggerView _loggerView;
+        internal ProjectView _projectView;
+        internal NodeView _nodeView;
+
+        public static MainForm Instance;
 
         public MainForm()
-		{
+        {
+	        Instance = this;
 			InitializeComponent();
             // 添加控件滚动消息过滤器，以将所有鼠标滚轮事件重新路由到用户当前鼠标悬停在其上的控件
             Application.AddMessageFilter(new ControlScrollFilter());
@@ -33,9 +40,13 @@ namespace CLEditor
 
             // 构建工具窗口并将其添加到dock面板中
             _loggerView = new LoggerView();
+			_projectView = new ProjectView();
+			_nodeView = new NodeView();
 
-            // 将工具窗口添加到列表中
-            _toolWindows.Add(_loggerView);
+			// 将工具窗口添加到列表中
+			_toolWindows.Add(_loggerView);
+			_toolWindows.Add(_projectView);
+			_toolWindows.Add(_nodeView);
 
             // 如果存储了以前的状态，则反序列化
             if (File.Exists(Settings.Default.DOCKPANELCONFIG))
@@ -65,8 +76,21 @@ namespace CLEditor
             mainDockPanel.ContentAdded += MainDockPanelOnContentAdded;
             mainDockPanel.ContentRemoved += MainDockPanelOnContentRemoved;
 
-            createProjectStrip.Click += NewProjectOnClick;
+            loadProjectStrip.Click += LoadProjectStripOnClick;
+			createProjectStrip.Click += NewProjectOnClick;
             menuLogger.Click += MenuLoggerOnClick;
+			menuProject.Click += MenuProjectOnClick;
+			menuNode.Click += MenuNodeOnClick;
+        }
+
+        private void MenuNodeOnClick(object sender, EventArgs e)
+        {
+	        ToggleToolWindow(_nodeView);
+        }
+
+        private void MenuProjectOnClick(object sender, EventArgs e)
+        {
+	        ToggleToolWindow(_projectView);
         }
 
         private void MenuLoggerOnClick(object sender, EventArgs e)
@@ -96,16 +120,45 @@ namespace CLEditor
             var newProjectForm = new NewProjectForm();
 			if (newProjectForm.ShowDialog() == DialogResult.Yes)
 			{
-				
+				// 创建完成
+				CoreEditor.LoadProject(newProjectForm.Info);
 			}
 		}
 
-        private void BuildWindowMenu()
+        private void LoadProjectStripOnClick(object sender, EventArgs e)
         {
-            menuLogger.Checked = mainDockPanel.ContainsContent(_loggerView);
+	        var folderBrowser = new FolderBrowserDialog();
+	        if (folderBrowser.ShowDialog() == DialogResult.OK)
+	        {
+		        if (!Directory.Exists(folderBrowser.SelectedPath)) return;
+		        if (!File.Exists(Path.Combine(folderBrowser.SelectedPath, Settings.Default.PROJECTCONFIG)))
+		        {
+					Log.Error("项目不存在，请重新创建");
+			        return;
+		        }
+
+		        try
+		        {
+			        var info = SerializerHelper.Deserialize<ProjectInfo>(Path.Combine(folderBrowser.SelectedPath,
+				        Settings.Default.PROJECTCONFIG));
+			        CoreEditor.LoadProject(info);
+					Log.Info("加载项目成功");
+				}
+		        catch (Exception exception)
+		        {
+			        Log.Error("加载项目失败:" + exception.Message);
+		        }
+	        }
         }
 
-        private void ToggleToolWindow(DarkToolWindow toolWindow)
+		private void BuildWindowMenu()
+        {
+            menuLogger.Checked = mainDockPanel.ContainsContent(_loggerView);
+            menuProject.Checked = mainDockPanel.ContainsContent(_projectView);
+			menuNode.Checked = mainDockPanel.ContainsContent(_nodeView);
+        }
+
+        private void ToggleToolWindow(DarkDockContent toolWindow)
         {
             if (toolWindow.DockPanel == null) 
                 mainDockPanel.AddContent(toolWindow);

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Text;
 using CLEditor.Utils;
 using DarkUI.Docking;
@@ -35,7 +36,7 @@ namespace CLEditor
                 if (Log.LogDataList.Count > 0)
                 {
                     var data = (LogData)Log.LogDataList.Dequeue();
-                    loggerBackworker.ReportProgress(0, $"[{data.Type}]: {data.Message}");
+                    loggerBackworker.ReportProgress(0, $"[{data.Type}]: {data.Message}" + Environment.NewLine);
                 }
             }
         }

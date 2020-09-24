@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace CLEditor.Utils
 {
-    public class ProcessUtils
+    public class ProcessHelper
     {
         private static string CmdPath = @"C:\Windows\System32\cmd.exe";
         /// <summary>

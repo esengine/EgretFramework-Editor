@@ -22,14 +22,14 @@ namespace CLEditor.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    internal class Icons {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal Icons() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace CLEditor.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CLEditor.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CLEditor.Properties.Icons", typeof(Icons).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,9 +63,9 @@ namespace CLEditor.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap application_16x {
+        internal static System.Drawing.Bitmap application {
             get {
-                object obj = ResourceManager.GetObject("application_16x", resourceCulture);
+                object obj = ResourceManager.GetObject("application", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,83 +73,30 @@ namespace CLEditor.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap bg {
+        internal static System.Drawing.Bitmap file {
             get {
-                object obj = ResourceManager.GetObject("bg", resourceCulture);
+                object obj = ResourceManager.GetObject("file", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 CLEditor编辑器 的本地化字符串。
-        /// </summary>
-        internal static string MainForm_Title {
-            get {
-                return ResourceManager.GetString("MainForm_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  版本: {0} 的本地化字符串。
-        /// </summary>
-        internal static string MainForm_Version {
-            get {
-                return ResourceManager.GetString("MainForm_Version", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 文件 的本地化字符串。
-        /// </summary>
-        internal static string MenuStrip_File {
-            get {
-                return ResourceManager.GetString("MenuStrip_File", resourceCulture);
             }
         }
         
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap NewFile_6276 {
+        internal static System.Drawing.Bitmap folder_close {
             get {
-                object obj = ResourceManager.GetObject("NewFile_6276", resourceCulture);
+                object obj = ResourceManager.GetObject("folder_close", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   查找类似 创建工程 的本地化字符串。
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static string NewProjectForm_NewProject {
+        internal static System.Drawing.Bitmap folder_open {
             get {
-                return ResourceManager.GetString("NewProjectForm_NewProject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 工程名称 的本地化字符串。
-        /// </summary>
-        internal static string NewProjectForm_ProjectName {
-            get {
-                return ResourceManager.GetString("NewProjectForm_ProjectName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 工程名不能为空 的本地化字符串。
-        /// </summary>
-        internal static string NewProjectForm_ProjectNameIsNotNull {
-            get {
-                return ResourceManager.GetString("NewProjectForm_ProjectNameIsNotNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 工程路径不能为空 的本地化字符串。
-        /// </summary>
-        internal static string NewProjectForm_ProjectPathIsNotNull {
-            get {
-                return ResourceManager.GetString("NewProjectForm_ProjectPathIsNotNull", resourceCulture);
+                object obj = ResourceManager.GetObject("folder_open", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
