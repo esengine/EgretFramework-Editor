@@ -1,7 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 using CLEditor.Editor;
+using CLEditor.Forms;
 using CLEditor.Properties;
 using CLEditor.Utils;
 using DarkUI.Controls;
@@ -9,17 +13,115 @@ using DarkUI.Docking;
 
 namespace CLEditor.Views
 {
-	internal delegate void UpdateNodeDelegate(DarkTreeNode node);
+	internal delegate void UpdateNodeDelegate(DarkTreeNode node, DarkTreeNode rootNode = null);
 	internal delegate void ClearNodeDelgate();
 
 	public partial class ProjectView : DarkToolWindow
 	{
+		private DarkContextMenu _contextMenu;
 		private FileSystemWatcher _fileSystemWatcher;
-		private readonly List<FileInfo> fileList = new List<FileInfo>();
+		private bool _toggle = false;
 
 		public ProjectView()
 		{
 			InitializeComponent();
+
+			_contextMenu = new DarkContextMenu();
+			projectList.ContextMenuStrip = _contextMenu;
+			projectList.AllowMoveNodes = false;
+			projectList.MultiSelect = false;
+			InitContextMenu();
+			
+			_contextMenu.Opening += ContextMenuOnOpening;
+			projectList.DoubleClick += ProjectListOnDoubleClick;
+			projectList.SelectedNodesChanged += ProjectListOnSelectedNodesChanged;
+			Resize += OnResize;
+			TogglePreview(false);
+		}
+
+		private void InitContextMenu()
+		{
+			var createDirMenu = new ToolStripMenuItem("创建文件夹");
+			createDirMenu.Click += CreateDirMenuOnClick;
+			_contextMenu.Items.Add(createDirMenu);
+		}
+		
+		private void ContextMenuOnOpening(object sender, CancelEventArgs e)
+		{
+			var nodes = projectList.SelectedNodes;
+			if (nodes.Count <= 0)
+			{
+				e.Cancel = true;
+				return;
+			}
+
+			var firstNode = nodes.First();
+			if (firstNode == null)
+				e.Cancel = true;
+		}
+		
+		private void CreateDirMenuOnClick(object sender, EventArgs e)
+		{
+			new NewDirectoryForm().ShowDialog();
+		}
+
+		private void OnResize(object sender, EventArgs e)
+		{
+			TogglePreview(this._toggle);
+		}
+
+		private void ProjectListOnSelectedNodesChanged(object sender, EventArgs e)
+		{
+			var nodes = projectList.SelectedNodes;
+			if (nodes.Count <= 0) 
+				return;
+			
+			var firstNode = nodes.First();
+			if (firstNode == null) 
+				return;
+
+			if (!(firstNode.Tag is FileInfo fileInfo) || fileInfo.Attributes == FileAttributes.Directory) 
+				return;
+			
+			var extension = fileInfo.Extension.ToLower();
+			if (extension == ".png" || extension == ".jpg")
+			{
+				previewBox.Image = Image.FromFile(fileInfo.FullName);
+				TogglePreview(true);
+			}
+			else
+			{
+				TogglePreview(false);
+			}
+		}
+
+		private void TogglePreview(bool visible)
+		{
+			_toggle = visible;
+			if (visible)
+			{
+				previewPanel.Size = new Size(previewPanel.Size.Width, 216);
+				projectList.Size = new Size(projectList.Size.Width, Height - 32 - previewPanel.Height);
+				previewPanel.Location = new Point(previewPanel.Location.X, Height - 216);
+			}
+			else
+			{
+				previewPanel.Size = new Size(previewPanel.Size.Width, 30);
+				projectList.Size = new Size(projectList.Size.Width, Height - 32 - previewPanel.Height);
+				previewPanel.Location = new Point(previewPanel.Location.X, Height - 32);
+			}
+		}
+
+		private void ProjectListOnDoubleClick(object sender, EventArgs e)
+		{
+			var nodes = projectList.SelectedNodes;
+			if (nodes.Count <= 0) 
+				return;
+			var firstNode = nodes.First();
+
+			if (firstNode != null)
+			{
+			}
 		}
 
 		public void LoadProject(ProjectInfo info)
@@ -33,7 +135,7 @@ namespace CLEditor.Views
 			_fileSystemWatcher.Error += FileSystemWatcherOnError;
 			_fileSystemWatcher.EnableRaisingEvents = true;
 
-			UpdateDirectory();
+			UpdateDirectory(info.Path);
 		}
 
 		private void FileSystemWatcherOnError(object sender, ErrorEventArgs e)
@@ -43,19 +145,15 @@ namespace CLEditor.Views
 
 		private void FileSystemWatcherOnChanged(object sender, FileSystemEventArgs e)
 		{
-			UpdateDirectory();
-		}
-
-		private void UpdateDirectory()
-		{
-			fileList.Clear();
 			projectList.BeginInvoke(new ClearNodeDelgate(ClearNode));
 
-			var files = Directory.GetFileSystemEntries(CoreEditor.Info.Path);
-			foreach (var file in files)
-			{
-				fileList.Add(new FileInfo(file));
-			}
+			UpdateDirectory(_fileSystemWatcher.Path);
+		}
+
+		private void UpdateDirectory(string directory, DarkTreeNode rootNode = null)
+		{
+			var files = Directory.GetFileSystemEntries(directory);
+			var fileList = files.Select(file => new FileInfo(file)).ToList();
 			fileList.Sort((a, b) =>
 			{
 				if (a.Attributes == b.Attributes) return 0;
@@ -72,13 +170,14 @@ namespace CLEditor.Views
 				{
 					node.Icon = Icons.folder_close;
 					node.ExpandedIcon = Icons.folder_open;
+					UpdateDirectory(file.FullName, node);
 				}
 				else
 				{
 					node.Icon = Icons.file;
 				}
 
-				projectList.BeginInvoke(new UpdateNodeDelegate(UpdateNode), node);
+				projectList.BeginInvoke(new UpdateNodeDelegate(UpdateNode), node, rootNode);
 			}
 		}
 
@@ -87,9 +186,12 @@ namespace CLEditor.Views
 			projectList.Nodes.Clear();
 		}
 
-		private void UpdateNode(DarkTreeNode node)
+		private void UpdateNode(DarkTreeNode node, DarkTreeNode rootNode = null)
 		{
-			projectList.Nodes.Add(node);
+			if (rootNode == null )
+				projectList.Nodes.Add(node);
+			else
+				rootNode.Nodes.Add(node);
 		}
 	}
 }

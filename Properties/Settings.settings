@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CLEditor.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -8,5 +8,9 @@
     <Setting Name="PROJECTCONFIG" Type="System.String" Scope="User">
       <Value Profile="(Default)">project.config</Value>
     </Setting>
+    <Setting Name="MonitorDPI" Type="System.Int16" Scope="User">
+      <Value Profile="(Default)">411</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
+

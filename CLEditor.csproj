@@ -36,9 +36,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DarkUI, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\DarkUI.2.0.2\lib\DarkUI.dll</HintPath>
-    </Reference>
     <Reference Include="DynamicData, Version=6.16.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\DynamicData.6.16.9\lib\net461\DynamicData.dll</HintPath>
     </Reference>
@@ -79,11 +76,23 @@
   <ItemGroup>
     <Compile Include="Editor\CoreEditor.cs" />
     <Compile Include="Editor\ProjectInfo.cs" />
+    <Compile Include="Forms\NewDirectoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewDirectoryForm.Designer.cs">
+      <DependentUpon>NewDirectoryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\NewProjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\NewProjectForm.Designer.cs">
       <DependentUpon>NewProjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SettingForm.Designer.cs">
+      <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -119,8 +128,20 @@
     <Compile Include="Views\ProjectView.Designer.cs">
       <DependentUpon>ProjectView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\SceneView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\SceneView.Designer.cs">
+      <DependentUpon>SceneView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\NewDirectoryForm.resx">
+      <DependentUpon>NewDirectoryForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\NewProjectForm.resx">
       <DependentUpon>NewProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SettingForm.resx">
+      <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -147,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ProjectView.resx">
       <DependentUpon>ProjectView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SceneView.resx">
+      <DependentUpon>SceneView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -176,6 +200,10 @@
     <None Include="Resource\NewFile_6276.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="libs\DarkUI\DarkUI.csproj">
+      <Project>{f19472f5-8c44-4c51-a8a0-b9de5f555255}</Project>
+      <Name>DarkUI</Name>
+    </ProjectReference>
     <ProjectReference Include="libs\NodeEditor\NodeEditor.csproj">
       <Project>{2a51d621-3e0d-4293-a2ad-964721bfff7b}</Project>
       <Name>NodeEditor</Name>

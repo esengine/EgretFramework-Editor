@@ -32,22 +32,22 @@
 			this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.createProjectStrip = new System.Windows.Forms.ToolStripMenuItem();
 			this.loadProjectStrip = new System.Windows.Forms.ToolStripMenuItem();
+			this.工具ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.settingStrip = new System.Windows.Forms.ToolStripMenuItem();
 			this.窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuLogger = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuProject = new System.Windows.Forms.ToolStripMenuItem();
 			this.darkStatusStrip1 = new DarkUI.Controls.DarkStatusStrip();
 			this.mainDockPanel = new DarkUI.Docking.DarkDockPanel();
-			this.menuNode = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuScene = new System.Windows.Forms.ToolStripMenuItem();
 			this.darkMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// darkMenuStrip1
 			// 
-			this.darkMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-			this.darkMenuStrip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-			this.darkMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.文件ToolStripMenuItem,
-            this.窗口ToolStripMenuItem});
+			this.darkMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (60)))), ((int) (((byte) (63)))), ((int) (((byte) (65)))));
+			this.darkMenuStrip1.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
+			this.darkMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.文件ToolStripMenuItem, this.工具ToolStripMenuItem, this.窗口ToolStripMenuItem});
 			this.darkMenuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.darkMenuStrip1.Name = "darkMenuStrip1";
 			this.darkMenuStrip1.Padding = new System.Windows.Forms.Padding(3, 2, 0, 2);
@@ -57,19 +57,17 @@
 			// 
 			// 文件ToolStripMenuItem
 			// 
-			this.文件ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-			this.文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createProjectStrip,
-            this.loadProjectStrip});
-			this.文件ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+			this.文件ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (60)))), ((int) (((byte) (63)))), ((int) (((byte) (65)))));
+			this.文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.createProjectStrip, this.loadProjectStrip});
+			this.文件ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
 			this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
 			this.文件ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
 			this.文件ToolStripMenuItem.Text = "文件";
 			// 
 			// createProjectStrip
 			// 
-			this.createProjectStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-			this.createProjectStrip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+			this.createProjectStrip.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (60)))), ((int) (((byte) (63)))), ((int) (((byte) (65)))));
+			this.createProjectStrip.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
 			this.createProjectStrip.Image = global::CLEditor.Properties.Resources.NewFile_6276;
 			this.createProjectStrip.Name = "createProjectStrip";
 			this.createProjectStrip.Size = new System.Drawing.Size(124, 22);
@@ -77,47 +75,59 @@
 			// 
 			// loadProjectStrip
 			// 
-			this.loadProjectStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-			this.loadProjectStrip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+			this.loadProjectStrip.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (60)))), ((int) (((byte) (63)))), ((int) (((byte) (65)))));
+			this.loadProjectStrip.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
 			this.loadProjectStrip.Name = "loadProjectStrip";
 			this.loadProjectStrip.Size = new System.Drawing.Size(124, 22);
 			this.loadProjectStrip.Text = "加载工程";
 			// 
+			// 工具ToolStripMenuItem
+			// 
+			this.工具ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.settingStrip});
+			this.工具ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
+			this.工具ToolStripMenuItem.Name = "工具ToolStripMenuItem";
+			this.工具ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+			this.工具ToolStripMenuItem.Text = "工具";
+			// 
+			// settingStrip
+			// 
+			this.settingStrip.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
+			this.settingStrip.Name = "settingStrip";
+			this.settingStrip.Size = new System.Drawing.Size(100, 22);
+			this.settingStrip.Text = "选项";
+			// 
 			// 窗口ToolStripMenuItem
 			// 
-			this.窗口ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-			this.窗口ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuLogger,
-            this.menuProject,
-            this.menuNode});
-			this.窗口ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+			this.窗口ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (60)))), ((int) (((byte) (63)))), ((int) (((byte) (65)))));
+			this.窗口ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.menuLogger, this.menuProject, this.menuScene});
+			this.窗口ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
 			this.窗口ToolStripMenuItem.Name = "窗口ToolStripMenuItem";
 			this.窗口ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
 			this.窗口ToolStripMenuItem.Text = "窗口";
 			// 
 			// menuLogger
 			// 
-			this.menuLogger.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-			this.menuLogger.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+			this.menuLogger.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (60)))), ((int) (((byte) (63)))), ((int) (((byte) (65)))));
+			this.menuLogger.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
 			this.menuLogger.Image = global::CLEditor.Properties.Resources.application_16x;
 			this.menuLogger.Name = "menuLogger";
-			this.menuLogger.Size = new System.Drawing.Size(180, 22);
+			this.menuLogger.Size = new System.Drawing.Size(152, 22);
 			this.menuLogger.Text = "日志";
 			// 
 			// menuProject
 			// 
-			this.menuProject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-			this.menuProject.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+			this.menuProject.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (60)))), ((int) (((byte) (63)))), ((int) (((byte) (65)))));
+			this.menuProject.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
 			this.menuProject.Image = global::CLEditor.Properties.Resources.application_16x;
 			this.menuProject.Name = "menuProject";
-			this.menuProject.Size = new System.Drawing.Size(180, 22);
+			this.menuProject.Size = new System.Drawing.Size(152, 22);
 			this.menuProject.Text = "工程";
 			// 
 			// darkStatusStrip1
 			// 
 			this.darkStatusStrip1.AutoSize = false;
-			this.darkStatusStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-			this.darkStatusStrip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+			this.darkStatusStrip1.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (60)))), ((int) (((byte) (63)))), ((int) (((byte) (65)))));
+			this.darkStatusStrip1.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
 			this.darkStatusStrip1.Location = new System.Drawing.Point(0, 426);
 			this.darkStatusStrip1.Name = "darkStatusStrip1";
 			this.darkStatusStrip1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 3);
@@ -128,21 +138,20 @@
 			// 
 			// mainDockPanel
 			// 
-			this.mainDockPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+			this.mainDockPanel.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (60)))), ((int) (((byte) (63)))), ((int) (((byte) (65)))));
 			this.mainDockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.mainDockPanel.Location = new System.Drawing.Point(0, 25);
 			this.mainDockPanel.Name = "mainDockPanel";
 			this.mainDockPanel.Size = new System.Drawing.Size(800, 401);
 			this.mainDockPanel.TabIndex = 2;
 			// 
-			// menuNode
+			// menuScene
 			// 
-			this.menuNode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-			this.menuNode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-			this.menuNode.Image = global::CLEditor.Properties.Resources.application_16x;
-			this.menuNode.Name = "menuNode";
-			this.menuNode.Size = new System.Drawing.Size(180, 22);
-			this.menuNode.Text = "节点视图";
+			this.menuScene.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
+			this.menuScene.Image = global::CLEditor.Properties.Resources.application_16x;
+			this.menuScene.Name = "menuScene";
+			this.menuScene.Size = new System.Drawing.Size(152, 22);
+			this.menuScene.Text = "场景";
 			// 
 			// MainForm
 			// 
@@ -160,10 +169,11 @@
 			this.darkMenuStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
-
 		}
 
-        #endregion
+		private System.Windows.Forms.ToolStripMenuItem menuScene;
+
+		#endregion
 
         private DarkUI.Controls.DarkMenuStrip darkMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 文件ToolStripMenuItem;
@@ -174,7 +184,8 @@
         private System.Windows.Forms.ToolStripMenuItem menuLogger;
 		private System.Windows.Forms.ToolStripMenuItem menuProject;
 		private System.Windows.Forms.ToolStripMenuItem loadProjectStrip;
-		private System.Windows.Forms.ToolStripMenuItem menuNode;
+		private System.Windows.Forms.ToolStripMenuItem 工具ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem settingStrip;
 	}
 }
 

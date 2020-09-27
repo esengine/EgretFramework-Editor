@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using CLEditor.Editor;
+using CLEditor.Forms;
 using CLEditor.Properties;
 using CLEditor.Utils;
 using CLEditor.Views;
@@ -21,7 +22,8 @@ namespace CLEditor
         private SourceList<DarkDockContent> _toolWindows = new SourceList<DarkDockContent>();
         internal LoggerView _loggerView;
         internal ProjectView _projectView;
-        internal NodeView _nodeView;
+        // internal NodeView _nodeView;
+        internal SceneView _sceneView;
 
         public static MainForm Instance;
 
@@ -41,12 +43,14 @@ namespace CLEditor
             // 构建工具窗口并将其添加到dock面板中
             _loggerView = new LoggerView();
 			_projectView = new ProjectView();
-			_nodeView = new NodeView();
+			// _nodeView = new NodeView();
+			_sceneView = new SceneView();
 
 			// 将工具窗口添加到列表中
 			_toolWindows.Add(_loggerView);
 			_toolWindows.Add(_projectView);
-			_toolWindows.Add(_nodeView);
+			// _toolWindows.Add(_nodeView);
+			_toolWindows.Add(_sceneView);
 
             // 如果存储了以前的状态，则反序列化
             if (File.Exists(Settings.Default.DOCKPANELCONFIG))
@@ -80,13 +84,25 @@ namespace CLEditor
 			createProjectStrip.Click += NewProjectOnClick;
             menuLogger.Click += MenuLoggerOnClick;
 			menuProject.Click += MenuProjectOnClick;
-			menuNode.Click += MenuNodeOnClick;
+			// menuNode.Click += MenuNodeOnClick;
+			menuScene.Click += MenuSceneOnClick;
+			settingStrip.Click += SettingStripOnClick;
         }
 
-        private void MenuNodeOnClick(object sender, EventArgs e)
+        private void MenuSceneOnClick(object sender, EventArgs e)
         {
-	        ToggleToolWindow(_nodeView);
+	        ToggleToolWindow(_sceneView);
         }
+
+        private void SettingStripOnClick(object sender, EventArgs e)
+        {
+	        new SettingForm().ShowDialog();
+        }
+
+        // private void MenuNodeOnClick(object sender, EventArgs e)
+        // {
+	       //  ToggleToolWindow(_nodeView);
+        // }
 
         private void MenuProjectOnClick(object sender, EventArgs e)
         {
@@ -155,7 +171,8 @@ namespace CLEditor
         {
             menuLogger.Checked = mainDockPanel.ContainsContent(_loggerView);
             menuProject.Checked = mainDockPanel.ContainsContent(_projectView);
-			menuNode.Checked = mainDockPanel.ContainsContent(_nodeView);
+			// menuNode.Checked = mainDockPanel.ContainsContent(_nodeView);
+			menuScene.Checked = mainDockPanel.ContainsContent(_sceneView);
         }
 
         private void ToggleToolWindow(DarkDockContent toolWindow)
@@ -174,8 +191,20 @@ namespace CLEditor
 
         private void DeserializeDockPanel(string path)
         {
-            var state = SerializerHelper.Deserialize<DockPanelState>(path);
-            mainDockPanel.RestoreDockPanelState(state, GetContentBySerializationKey);
+	        try
+	        {
+		        var state = SerializerHelper.Deserialize<DockPanelState>(path);
+		        mainDockPanel.RestoreDockPanelState(state, GetContentBySerializationKey);
+	        }
+	        catch (Exception e)
+	        {
+		        _toolWindows.Items.AsList().ForEach(toolWindow =>
+		        {
+			        mainDockPanel.AddContent(toolWindow);
+		        });
+		        Log.Error("序列化dockPanel失败:" + e.Message);
+	        }
+            
         }
 
         private DarkDockContent GetContentBySerializationKey(string key)
