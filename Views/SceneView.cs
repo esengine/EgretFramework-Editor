@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using CLEditor.Editor;
 using CLEditor.Properties;
 
 namespace CLEditor.Views
@@ -23,6 +24,10 @@ namespace CLEditor.Views
 		{
 			base.OnPaint(e);
 			var graphics = e.Graphics;
+			graphics.Clear(Color.Transparent);
+			if (!CoreEditor.IsLoad) return;
+
+			graphics.DrawRectangle(Pens.Red, 0, 0, CoreEditor.Info.SceneWidth, CoreEditor.Info.SceneHeight);
 		}
 	}
 }

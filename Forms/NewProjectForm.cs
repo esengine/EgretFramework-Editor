@@ -37,6 +37,18 @@ namespace CLEditor
                 return;
             }
 
+            if (!int.TryParse(screenWidth.Text, out var width))
+            {
+	            MessageBox.Show(@"请确认您的屏幕宽度输入是否正确");
+	            return;
+            }
+
+            if (!int.TryParse(screenHeight.Text, out var height))
+            {
+	            MessageBox.Show(@"请确认您的屏幕高度输入是否正确");
+	            return;
+            }
+
             if (!Directory.Exists(projectPosition.Text))
             {
                 Directory.CreateDirectory(projectBrowser.Text);
@@ -44,14 +56,15 @@ namespace CLEditor
 
             Info = new ProjectInfo
             {
-	            Name = projectName.Text, Path = Path.Combine(projectPosition.Text, projectName.Text)
+	            Name = projectName.Text, Path = Path.Combine(projectPosition.Text, projectName.Text), 
+	            SceneWidth = width, SceneHeight = height
             };
 
             try
             {
 	            ProcessHelper.Run($"egret create {projectName.Text} --type core", projectPosition.Text, text =>
 	            {
-		            SerializerHelper.Serialize(Info, Path.Combine(projectPosition.Text, projectName.Text, Settings.Default.PROJECTCONFIG));
+					CoreEditor.SaveProject(Path.Combine(projectPosition.Text, projectName.Text, Settings.Default.PROJECTCONFIG));
 	            });
 			}
             catch (Exception exception)
